@@ -1,0 +1,62 @@
+Tmin_cuts
+v5
+r1
+cCheck dependencies
+cCompileC build/min_cuts.build/Debug/min_cuts.build/Objects-normal/x86_64/main.o /Users/Rashid/Documents/Dev/python/algorithms/min_cuts/min_cuts/min_cuts/main.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+cLd /Users/Rashid/Documents/Dev/python/algorithms/min_cuts/min_cuts/build/Debug/min_cuts normal x86_64
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk
+c0000000051D48BD100000000000000AA
+t1372883921
+s170
+
+N/Users/Rashid/Documents/Dev/python/algorithms/min_cuts/min_cuts/build/Debug/min_cuts
+t2
+s0
+
+N/Users/Rashid/Documents/Dev/python/algorithms/min_cuts/min_cuts/build/min_cuts.build/Debug/min_cuts.build/Objects-normal/x86_64/main.o
+t2
+s0
+
+N/Users/Rashid/Documents/Dev/python/algorithms/min_cuts/min_cuts/build/min_cuts.build/Debug/min_cuts.build/Objects-normal/x86_64/min_cuts.LinkFileList
+c0000000051F560130000000000000087
+t1375035411
+s135
+
+N/Users/Rashid/Documents/Dev/python/algorithms/min_cuts/min_cuts/min_cuts/main.cpp
+c0000000051F55EE80000000000000188
+t1375035112
+s392
+i<iostream>
+i<fstream>
+
+CBuild AST from /Users/Rashid/Documents/Dev/python/algorithms/min_cuts/min_cuts/min_cuts/main.cpp
+r0
+
+CCheck dependencies
+r0
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies304aa89397a5b741^7105ac9397a5b741^---0#1#0#--18"Check dependencies36"1C483B6D-E26A-47F4-8C28-0E094739A93B-
+
+CCompileC build/min_cuts.build/Debug/min_cuts.build/Objects-normal/x86_64/main.o /Users/Rashid/Documents/Dev/python/algorithms/min_cuts/min_cuts/min_cuts/main.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+s396728211.676488
+e396728212.102065
+r1
+xCompileC
+xbuild/min_cuts.build/Debug/min_cuts.build/Objects-normal/x86_64/main.o
+x/Users/Rashid/Documents/Dev/python/algorithms/min_cuts/min_cuts/min_cuts/main.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection89"Compile /Users/Rashid/Documents/Dev/python/algorithms/min_cuts/min_cuts/min_cuts/main.cpp2e55ad9397a5b741^e21f1a9497a5b741^---0#0#0#-19%DVTDocumentLocation2@97"file://localhost/Users/Rashid/Documents/Dev/python/algorithms/min_cuts/min_cuts/min_cuts/main.cpp0000000000000000^3053"CompileC build/min_cuts.build/Debug/min_cuts.build/Objects-normal/x86_64/main.o min_cuts/main.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/Rashid/Documents/Dev/python/algorithms/min_cuts/min_cuts    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch x86_64 -fmessage-length=0 -std=gnu++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.8 -g -fvisibility-inlines-hidden -Wno-sign-conversion -iquote /Users/Rashid/Documents/Dev/python/algorithms/min_cuts/min_cuts/build/min_cuts.build/Debug/min_cuts.build/min_cuts-generated-files.hmap -I/Users/Rashid/Documents/Dev/python/algorithms/min_cuts/min_cuts/build/min_cuts.build/Debug/min_cuts.build/min_cuts-own-target-headers.hmap -I/Users/Rashid/Documents/Dev/python/algorithms/min_cuts/min_cuts/build/min_cuts.build/Debug/min_cuts.build/min_cuts-all-target-headers.hmap -iquote /Users/Rashid/Documents/Dev/python/algorithms/min_cuts/min_cuts/build/min_cuts.build/Debug/min_cuts.build/min_cuts-project-headers.hmap -I/Users/Rashid/Documents/Dev/python/algorithms/min_cuts/min_cuts/build/Debug/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/Rashid/Documents/Dev/python/algorithms/min_cuts/min_cuts/build/min_cuts.build/Debug/min_cuts.build/DerivedSources/x86_64 -I/Users/Rashid/Documents/Dev/python/algorithms/min_cuts/min_cuts/build/min_cuts.build/Debug/min_cuts.build/DerivedSources -F/Users/Rashid/Documents/Dev/python/algorithms/min_cuts/min_cuts/build/Debug -MMD -MT dependencies -MF /Users/Rashid/Documents/Dev/python/algorithms/min_cuts/min_cuts/build/min_cuts.build/Debug/min_cuts.build/Objects-normal/x86_64/main.d --serialize-diagnostics /Users/Rashid/Documents/Dev/python/algorithms/min_cuts/min_cuts/build/min_cuts.build/Debug/min_cuts.build/Objects-normal/x86_64/main.dia -c /Users/Rashid/Documents/Dev/python/algorithms/min_cuts/min_cuts/min_cuts/main.cpp -o /Users/Rashid/Documents/Dev/python/algorithms/min_cuts/min_cuts/build/min_cuts.build/Debug/min_cuts.build/Objects-normal/x86_64/main.o36"C509C8D3-9DA7-4A18-8A9F-0A8F4344851B-
+
+CLd /Users/Rashid/Documents/Dev/python/algorithms/min_cuts/min_cuts/build/Debug/min_cuts normal x86_64
+s396728212.108940
+e396728212.128090
+r1
+xLd
+x/Users/Rashid/Documents/Dev/python/algorithms/min_cuts/min_cuts/build/Debug/min_cuts
+xnormal
+xx86_64
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection89"Link /Users/Rashid/Documents/Dev/python/algorithms/min_cuts/min_cuts/build/Debug/min_cuts7efe1b9497a5b741^b4ca209497a5b741^---0#0#0#--816"Ld build/Debug/min_cuts normal x86_64    cd /Users/Rashid/Documents/Dev/python/algorithms/min_cuts/min_cuts    setenv MACOSX_DEPLOYMENT_TARGET 10.8    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -L/Users/Rashid/Documents/Dev/python/algorithms/min_cuts/min_cuts/build/Debug -F/Users/Rashid/Documents/Dev/python/algorithms/min_cuts/min_cuts/build/Debug -filelist /Users/Rashid/Documents/Dev/python/algorithms/min_cuts/min_cuts/build/min_cuts.build/Debug/min_cuts.build/Objects-normal/x86_64/min_cuts.LinkFileList -mmacosx-version-min=10.8 -stdlib=libc++ -o /Users/Rashid/Documents/Dev/python/algorithms/min_cuts/min_cuts/build/Debug/min_cuts36"90D9E12C-8DA3-476F-AFEA-9AB0817BA473-
+
