@@ -2,66 +2,57 @@
 import time
 import random
 import copy
+from collections import Counter
 
-INPUT_FILE = 'test.txt'
-# INPUT_FILE = 'kargerMinCut.txt'
-
-G = {}
-min_cut = -1
+# INPUT_FILE = 'test.txt'
+INPUT_FILE = 'kargerMinCut.txt'
 
 # choose random edge to contract        
 def select_random_edge(G): 
-    u = G.keys() [random.randint(0,len(G)-1)]
-    v = G[u] [random.randint(0,len(G[u])-1)]
+    u = random.choice(G.keys())
+    # v = random.choice(G[u].keys())
+    v = G[u].most_common(1)[0][0]
     return u, v
     
 #  krager contraction sub routine
 def karger_contraction(G):
     while len(G) > 2:
         u, v = select_random_edge(G)
-    
+        # print u, v
+        
         # step 1 - Append v's adjacency list to u
-        G[u].extend(G[v]) 
+        G[u] = G[u] + G[v]
+        # print G
 
         # step 2 - Replace all references to v in the graph
         for x in G[v]:
-            for i in range(0,len(G[x])):
-                if G[x][i] == v: G[x][i] = u
+            G[x][u] += G[x][v]
+            del G[x][v]
+        # print G
         
         # remove self references in u's adjacency list
-        while u in G[u]:
-            G[u].remove(u)
-
+        del G[u][u]
+        # print G
+        
         # remove v's list
         del G[v]
+        # print G
     
-    return len(G[G.keys()[0]])
+    return G.itervalues().next().most_common(1)[0][1]
 
 # read input file
+G = {}
 with open(INPUT_FILE) as f:
     for l in f.readlines():
-        arr = l.split()
-        G[arr[0]] = set(arr[1:])        
+        arr = [int(x) for x in l.split()]
+        G[arr[0]] = Counter(arr[1:])     
 
-
+# print G
 start = time.time()
 
 # # run the algorithm for 20 times
-# for i in range(0,100):
-#     graph = copy.deepcopy(G)
-#     cut = karger_contraction(graph)
-#     print 'Iteration ' + str(i) + ', Cut = ' + str(cut)
-#             
-#     if min_cut == -1:
-#         min_cut = cut
-#     elif cut < min_cut:
-#         min_cut = cut
-#     
-# print 'Minimum cut is ' + str(min_cut)
-# print 'Time taken ' + str(time.time() - start)
+cuts = [karger_contraction(copy.deepcopy(G)) for i in range(1000)]
 
-
-    
-    
-        
-
+# print res    
+print 'Minimum cut is ' + str(min(cuts))
+print 'Time taken ' + str(time.time() - start)
