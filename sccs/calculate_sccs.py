@@ -5,8 +5,10 @@ import operator
 from collections import Counter
 import sys
 import threading
-threading.stack_size(67108864)
-sys.setrecursionlimit(2**20)
+import resource
+threading.stack_size(2**25)
+sys.setrecursionlimit(10**9)
+resource.setrlimit(resource.RLIMIT_STACK, (2 ** 25, 2 ** 25))
 
 INPUT_FILE = 'SCC.txt'
 # INPUT_FILE = 'medium.txt'

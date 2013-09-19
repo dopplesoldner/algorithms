@@ -1,107 +1,88 @@
-#The file contains the edges of a directed graph. 
-#Vertices are labeled as positive integers from 1 to 875714. 
-#Every row indicates an edge, the vertex label in first column is the tail and the vertex label in second column is the head
-# (recall the graph is directed, and the edges are directed from the first column vertex to the second column vertex).
-# So for example, the 11th row looks liks : "2 47646". This just means that the vertex with label 2 has an outgoing edge to the vertex with label 47646
-#Your task is to code up the algorithm from the video lectures for computing strongly connected components (SCCs), and to run this algorithm on the given graph. 
+"""
+The file contains the edges of a directed graph. Vertices are labeled as
+positive integers from 1 to 875714. Every row indicates an edge, the vertex
+label in first column is the tail and the vertex label in second column is the
+head (recall the graph is directed, and the edges are directed from the first
+column vertex to the second column vertex). So for example, the 11th row looks
+liks : "2 47646". This just means that the vertex with label 2 has an outgoing
+edge to the vertex with label 47646
 
-#Output Format: You should output the sizes of the 5 largest SCCs in the given graph, in decreasing order of sizes, separated by commas (avoid any spaces). 
-#So if your algorithm computes the sizes of the five largest SCCs to be 500, 400, 300, 200 and 100, then your answer should be "500,400,300,200,100". If your algorithm #finds less than 5 SCCs, then write 0 for the remaining terms. 
-#Thus, if your algorithm computes only 3 SCCs whose sizes are 400, 300, and 100, then your answer should be #"400,300,100,0,0".
+Your task is to code up the algorithm from the video lectures for computing
+strongly connected components (SCCs), and to run this algorithm on the given
+graph. 
 
-from sys import argv
+Output Format: You should output the sizes of the 5 largest SCCs in the given
+graph, in decreasing order of sizes, separated by commas (avoid any spaces). So
+if your algorithm computes the sizes of the five largest SCCs to be 500, 400,
+300, 200 and 100, then your answer should be "500,400,300,200,100". If your
+algorithm finds less than 5 SCCs, then write 0 for the remaining terms. Thus, if
+your algorithm computes only 3 SCCs whose sizes are 400, 300, and 100, then your
+answer should be "400,300,100,0,0".
+"""
+
+from bitarray import bitarray
+from bidict import bidict
 import sys
-sys.setrecursionlimit(30000)
+import threading
+threading.stack_size(2**20)
+sys.setrecursionlimit(10**5)
 
-#dfs implementation
-#0 univistied
-#1 visited
-#2 explored
+def get_f_time(graph_rev, num_of_nodes):
+  """Return finishing time for all nodes"""
+  get_f_time.t = 0
+  def dfs(v, f_time, explored):
+    explored[v] = True
+    for edge in graph_rev.get(v, []):
+      if not explored[edge[1]]:
+        dfs(edge[1], f_time, explored)
+    get_f_time.t += 1
+    f_time[v] = get_f_time.t
 
+  global explored
+  explored.setall(False)
+  f_time = bidict() # bi-directional mapping from vertext to finishing time
+  for v in range(num_of_nodes, 0, -1):
+    if not explored[v]: 
+      dfs(v, f_time, explored)
+  return f_time
 
+def compute_scc(graph, f_time):
+  """Return a dict with mappings from the leader of a SCC to the SCC's size"""
+  def dfs(v, leader, leaders, explored):
+    explored[v] = True
+    leaders[leader] = leaders.get(leader, 0) + 1
+    for edge in graph.get(v, []):
+      if not explored[edge[1]]:
+        dfs(edge[1], leader, leaders, explored)
 
-#globals
-visited={}
-finish={}
-leader={}
+  global explored
+  explored.setall(False)
+  leaders = {} # mappings from leader to the size of its SCC
+  s = None # vertex from which the last DFS call was invoked
+  # process vertices in decreasing order of f_time
+  for fin in sorted(f_time.values(), reverse=True):
+    v = f_time[:fin] # get vertex 
+    if not explored[v]:
+      s = v
+      dfs(v, s, leaders, explored)
+  return leaders
 
-def init():
-    for i in range(1,N+1):
-        visited[i] = 0
-        finish[i] = 0
-        leader[i] = 0
+#build graph using adjacency list, each edge is a 2-tuple
+graph = {}
+graph_rev = {} # graph with all arcs reversed
+num_of_nodes = 0
+if len(sys.argv) < 2:
+  print 'Format: ./[this script name] [data file name]'
+  sys.exit(0)
+f = open(sys.argv[1])
+for line in f:
+  edge = map(int, line.split())
+  graph.setdefault(edge[0], []).append((edge[0], edge[1]))
+  graph_rev.setdefault(edge[1], []).append((edge[1], edge[0]))
+  num_of_nodes = max(num_of_nodes, edge[0], edge[1])
+f.close()
 
-#dfs function
-def dfs(G, i):
-    global t
-    visited[i] = 1
-    leader[i] = s
-    for j in G[i]:
-        if(visited[j] == 0): dfs(G,j)
-    t = t + 1
-    finish[i] = t
-
-
-#visit the nodes	
-def dfs_loop(G):
-    global t
-    global s
-    t = 0 #number of nodes processed so far
-    s = 0 #current source vertex
-    i = N
-    while( i > 0):
-        if(visited[i] == 0):
-            s = i
-            dfs(G, i)
-        i = i -  1
-
-
-
-
-#graph
-G = { }
-#transpose of graph
-GT = { }
-
-#max number of vertices
-N = 875714
-
-for i in range(1, N+1) :
-	G[i] = []
-	GT[i] = []
-
-# read from file		
-script, filename = argv
-for line in open(filename,'r').readlines():	
-	inputstr = []
-	inputstr = line.split()
-	x = int(inputstr[0])
-	y = int(inputstr[1])
-	G[x].append(y)
-	GT[y].append(x)
-
-
-#connected component logic						
-init()
-dfs_loop(GT)
-
-newGraph={}
-for i in range(1,N+1):
-       temp=[]
-       for x in G[i]: temp.append(finish[x])
-       newGraph[finish[i]] = temp
-init()
-dfs_loop(newGraph)
-
-# statistics
-a_list= sorted(leader.values())
-stat=[]
-pre=0
-for i in range(0,N-1):
-    if a_list[i] != a_list[i+1]:
-        stat.append(i+1-pre)
-        pre = i+1
-stat.append(N-pre)
-final_answer= sorted(stat)
-final_answer.reverse()
-print(final_answer[0:5])	
+explored = bitarray(num_of_nodes + 1) # 0 is not used
+f_time = get_f_time(graph_rev, num_of_nodes)
+leaders = compute_scc(graph, f_time)
+print sorted(leaders.values(), reverse=True)[:5]
